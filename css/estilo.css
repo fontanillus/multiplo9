@@ -1,0 +1,43 @@
+body {
+    width: 80%;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(../img/numeros.jpg);
+    background-repeat: no-repeat;
+    padding: 0;
+    margin: 0 auto;
+    background-position: right top;
+    /* Alinea la imagen a la derecha */
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: gold;
+    text-shadow: black 10px;
+}
+
+.posicion {
+    text-align: center;
+}
+
+input,
+button {
+    color: brown;
+    background-color: rgb(247, 247, 211);
+    border: 5px solid rgb(198, 150, 30);
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+input::placeholder {
+    color: rgb(177, 16, 16);
+}
+
+.color {
+    color: brown;
+    font-weight: bold;
+}

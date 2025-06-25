@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reducción números</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+    <!--Haz un programa que pregunte por un número, y usando el método de reducción de números indique si el mismo es múltiplo de 9 o no.-->
+    <br>
+    <br>
+    <h1>¿Quieres saber si un número es múltiplo de 9?</h1>
+    <br>
+    <p class="posicion">
+        <label for="numero" class="color">Escribe una cifra:</label>
+        <input type="number" id="numero" placeholder="Escribe una cifra" required>
+        <br>
+    </p>
+    <br>
+    <p class="posicion"><button type="button" onclick="verificarMultiplo9()">Verificar</button></p>
+    <p id="resultado"></p>
+
+    <script>
+        const RESULTADO = document.getElementById("resultado");
+
+        function reducirUnDigito(numero) {
+            let numeroReducido = Math.abs(numero); // Asegurarnos que sea positivo, convirtiendo un numero negativo en positivo
+            while (numeroReducido > 9) {
+                let suma = 0;
+                //numeroReducido.toString() convierte el valor de numeroReducido (que puede ser un número) a una cadena de texto (string)
+                //.split('') divide esa cadena en un arreglo, donde cada elemento es un carácter individual (en este caso, cada dígito)
+                //numeroReducido es 12345, después de esta línea la variable digitos será:['1', '2', '3', '4', '5']
+                let digitos = numeroReducido.toString().split('');
+                for (let i = 0; i < digitos.length; i++) {
+                    suma += parseInt(digitos[i]);
+                }
+                numeroReducido = suma;
+            }
+            return numeroReducido;
+        }
+
+        function verificarMultiplo9() {
+            const numero = parseInt(document.getElementById("numero").value);
+            if (isNaN(numero)) { // código a ejecutar si 'numero' NO es un número
+                RESULTADO.innerHTML = "Por favor, escribe un número válido.";
+                RESULTADO.style.fontWeight = "bold";
+                RESULTADO.style.color = "blue";
+                RESULTADO.style.textAlign = "center";
+                RESULTADO.style.size = "medium";
+                return;
+            }
+
+            const reducido = reducirUnDigito(numero);
+
+            if (reducido === 9) {
+                RESULTADO.innerHTML = `¡Sí! ${numero} es múltiplo de 9 (reducción: ${reducido}).`;
+                RESULTADO.style.fontWeight = "bold";
+                RESULTADO.style.color = "green";
+                RESULTADO.style.textAlign = "center";
+                RESULTADO.style.size = "medium";
+            } else {
+                RESULTADO.innerHTML = `No, ${numero} no es múltiplo de 9 (reducción: ${reducido}).`;
+                RESULTADO.style.fontWeight = "bold";
+                RESULTADO.style.color = "red";
+                RESULTADO.style.textAlign = "center";
+                RESULTADO.style.size = "medium";
+            }
+
+            // Mostrar en consola
+            console.log(`Número ingresado: ${numero}`);
+            console.log(`Número reducido final: ${reducido}`);
+            console.log(reducido === 9 ? "Es múltiplo de 9" : "No es múltiplo de 9");
+        }
+    </script>
+</body>
+
+</html>
